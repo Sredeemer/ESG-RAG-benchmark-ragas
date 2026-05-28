@@ -1,0 +1,26 @@
+=== SUMMARY RESULTS ===
+
+Model Performance Summary:
+               Model  LLMContextPrecisionWithReference  ContextPrecision  ContextRecall  ContextRelevance  Faithfulness  FactualCorrectness  AnswerRelevancy
+glm-4.7-flash:q4_K_M                             1.000             1.000          1.000             1.000         0.933               0.410            0.895
+  nemotron-3-nano:4b                             1.000             1.000          1.000             1.000         0.667               0.513            0.953
+   qwen3:4b-instruct                             1.000             1.000          1.000             1.000         0.606               0.240            0.969
+           gemma3:4b                             1.000             1.000          1.000             1.000         0.889               0.500            0.936
+      ministral-3:8b                             1.000             1.000          1.000             1.000         0.648               0.290            0.939
+
+Summary results saved to: outputs/03_evaluation_results/summary_results_20260422_193046.csv
+Detailed summary saved to: outputs/03_evaluation_results/detailed_summary_20260422_193046.json
+[SUCCESS] Step 3 completed successfully
+[SUCCESS] Evaluation results generated
+Results saved in: outputs/03_evaluation_results/
+  - Summary CSV files
+  - Detailed JSON files
+
+========================================
+[SUCCESS] Experiment completed successfully!
+========================================
+Total time: 9h 34m
+Completed at: Wed Apr 22 07:30:46 PM UTC 2026
+
+Results are available in the outputs/ directory
+Check outputs/03_evaluation_results/ for the summary CSV files

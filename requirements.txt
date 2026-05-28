@@ -1,0 +1,19 @@
+# Core dependencies
+ragas>=0.1.0
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-ollama>=0.1.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.24.0
+
+# Progress bars
+tqdm>=4.65.0
+
+# File handling
+pickle5>=0.0.12; python_version < "3.8"
+
+# Optional: For better performance
+torch>=2.0.0
+transformers>=4.30.0

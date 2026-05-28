@@ -1,0 +1,55 @@
+{
+  "summary_table": [
+    {
+      "Model": "glm-4.7-flash:q4_K_M",
+      "LLMContextPrecisionWithReference": 0.9999999999,
+      "ContextPrecision": 0.9999999999,
+      "ContextRecall": 1.0,
+      "ContextRelevance": 1.0,
+      "Faithfulness": 0.9333333333333332,
+      "FactualCorrectness": 0.41,
+      "AnswerRelevancy": 0.8948298669951339
+    },
+    {
+      "Model": "nemotron-3-nano:4b",
+      "LLMContextPrecisionWithReference": 0.9999999999,
+      "ContextPrecision": 0.9999999999,
+      "ContextRecall": 1.0,
+      "ContextRelevance": 1.0,
+      "Faithfulness": 0.6666666666666666,
+      "FactualCorrectness": 0.5133333333333333,
+      "AnswerRelevancy": 0.9528283450976064
+    },
+    {
+      "Model": "qwen3:4b-instruct",
+      "LLMContextPrecisionWithReference": 0.9999999999,
+      "ContextPrecision": 0.9999999999,
+      "ContextRecall": 1.0,
+      "ContextRelevance": 1.0,
+      "Faithfulness": 0.6058201058201058,
+      "FactualCorrectness": 0.24,
+      "AnswerRelevancy": 0.9688109031611819
+    },
+    {
+      "Model": "gemma3:4b",
+      "LLMContextPrecisionWithReference": 0.9999999999,
+      "ContextPrecision": 0.9999999999,
+      "ContextRecall": 1.0,
+      "ContextRelevance": 1.0,
+      "Faithfulness": 0.8888888888888888,
+      "FactualCorrectness": 0.5,
+      "AnswerRelevancy": 0.9355035005304654
+    },
+    {
+      "Model": "ministral-3:8b",
+      "LLMContextPrecisionWithReference": 0.9999999999,
+      "ContextPrecision": 0.9999999999,
+      "ContextRecall": 1.0,
+      "ContextRelevance": 1.0,
+      "Faithfulness": 0.6481481481481481,
+      "FactualCorrectness": 0.29000000000000004,
+      "AnswerRelevancy": 0.9387699843700811
+    }
+  ],
+  "timestamp": "20260422_193046"
+}

@@ -1,0 +1,55 @@
+{
+  "summary_table": [
+    {
+      "Model": "glm-4.7-flash:q4_K_M",
+      "LLMContextPrecisionWithReference": 0.79999999992,
+      "ContextPrecision": 0.7692307691538461,
+      "ContextRecall": 0.618421052631579,
+      "ContextRelevance": 0.985,
+      "Faithfulness": 0.8202300785634119,
+      "FactualCorrectness": 0.42000000000000004,
+      "AnswerRelevancy": 0.820959975228579
+    },
+    {
+      "Model": "nemotron-3-nano:4b",
+      "LLMContextPrecisionWithReference": 0.7901234567111111,
+      "ContextPrecision": 0.7692307691538461,
+      "ContextRecall": 0.618421052631579,
+      "ContextRelevance": 0.985,
+      "Faithfulness": 0.6302482774283866,
+      "FactualCorrectness": 0.4053658536585366,
+      "AnswerRelevancy": 0.8441826061953394
+    },
+    {
+      "Model": "qwen3:4b-instruct",
+      "LLMContextPrecisionWithReference": 0.7901234567111111,
+      "ContextPrecision": 0.7692307691538461,
+      "ContextRecall": 0.618421052631579,
+      "ContextRelevance": 0.985,
+      "Faithfulness": 0.7176057047191068,
+      "FactualCorrectness": 0.4636708860759494,
+      "AnswerRelevancy": 0.860901314263285
+    },
+    {
+      "Model": "gemma3:4b",
+      "LLMContextPrecisionWithReference": 0.7901234567111111,
+      "ContextPrecision": 0.7692307691538461,
+      "ContextRecall": 0.6133333333333333,
+      "ContextRelevance": 0.985,
+      "Faithfulness": 0.7778294729325657,
+      "FactualCorrectness": 0.41853658536585364,
+      "AnswerRelevancy": 0.8639196578883577
+    },
+    {
+      "Model": "ministral-3:8b",
+      "LLMContextPrecisionWithReference": 0.8024691357222222,
+      "ContextPrecision": 0.7692307691538461,
+      "ContextRecall": 0.618421052631579,
+      "ContextRelevance": 0.985,
+      "Faithfulness": 0.6071379439165463,
+      "FactualCorrectness": 0.3921428571428571,
+      "AnswerRelevancy": 0.8765426983689969
+    }
+  ],
+  "timestamp": "20260512_012212"
+}

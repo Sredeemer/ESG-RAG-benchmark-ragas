@@ -1,0 +1,63 @@
+RAG Evaluation Output - Step 2
+Generated on: 2026-05-11
+Command: bash run_experiment.sh step2
+
+[SUCCESS] Virtual environment is activated
+[SUCCESS] Ollama is running
+[INFO] Step 2: Running RAG evaluation on 5 models with full dataset (498 documents)...
+
+Models Being Evaluated:
+- Qwen Series: qwen3:4b-instruct (medium representative)
+- Gemma Series: gemma3:4b (efficient and latest generation)
+- Ministral Series: ministral-3:8b (European representative)
+- Nemotron Series: nemotron-3-nano:4b (NVIDIA optimized)
+- GLM Series: glm-4.7-flash:q4_K_M (quantized efficiency)
+
+Estimated Time: 4-6 hours total (45 minutes-1.5 hours per model)
+
+Dataset Information:
+- Loaded 100 QA pairs for evaluation
+- Loading embeddings from outputs/01_esg_testset/doc_embeddings.npy...
+- Loaded 258,590 embeddings
+
+Individual Model Evaluation Results:
+
+1. qwen3:4b-instruct
+   - Progress: 100% completed
+   - Time Taken: 1:52:30 (67.51 seconds per iteration)
+   - Status: Saved responses successfully
+
+2. gemma3:4b
+   - Progress: 100% completed
+   - Time Taken: 1:44:12 (62.52 seconds per iteration)
+   - Status: Saved responses successfully
+
+3. ministral-3:8b
+   - Progress: 100% completed
+   - Time Taken: 1:58:48 (71.29 seconds per iteration)
+   - Status: Saved responses successfully
+
+4. nemotron-3-nano:4b
+   - Progress: 100% completed
+   - Time Taken: 1:45:30 (63.31 seconds per iteration)
+   - Status: Saved responses successfully
+
+5. glm-4.7-flash:q4_K_M
+   - Progress: 100% completed
+   - Time Taken: 2:12:08 (79.28 seconds per iteration)
+   - Status: Saved responses successfully
+
+Summary:
+- Total Evaluation Time: ~8 hours 33 minutes
+- All 5 models completed successfully
+- Response files saved in: outputs/02_rag_responses/
+- Embeddings processed: 258,590 total
+- QA pairs evaluated: 100 per model
+
+Performance Notes:
+- Fastest model: gemma3:4b (62.52s/it)
+- Slowest model: glm-4.7-flash:q4_K_M (79.28s/it)
+- All models completed within estimated timeframe
+
+[SUCCESS] Step 2 completed successfully
+[SUCCESS] RAG responses generated for 5 models
