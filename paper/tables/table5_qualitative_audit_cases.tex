@@ -1,0 +1,27 @@
+\begin{table}[H]
+\centering
+\caption{Side-by-Side Audit Examples: Verbatim Model Responses on a Verified Numerical KPI Question vs. an Unanswerable Near-Miss Trap.}
+\label{tab:qualitative_cases}
+\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Audit Scenario} & \textbf{Question, Report Excerpt, and Verbatim Model Responses} \\
+\midrule
+\textbf{Case 1: Hard KPI Extraction} & \textbf{Audit Question:} \textit{``What was the company's total Scope 1 direct GHG emissions in metric tons for 2025?''} \\
+\textit{Source:} 2025 CSRD Filing & \textbf{Verified Report Answer:} \textit{``Total Scope 1 emissions were 142,500 metric tons $\text{CO}_2\text{e}$ in 2025.''} \\
+\addlinespace[2pt]
+& \model{Qwen3-4B}: ``The company reported Scope 1 direct emissions of approximately 142,500 tons CO2e in 2025.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Accurate Extraction (1.0)}} \\
+& \model{DeepSeek-R1-7B}: ``\texttt{<think>...target is Scope 1 2025 emissions...value is 142,500...</think>} In 2025, Scope 1 GHG emissions were 142,500 MT CO2e.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Accurate Extraction (1.0)}} \\
+& \model{GPT-OSS-20B}: ``The total Scope 1 direct greenhouse gas emissions for 2025 were 142,500 metric tons of CO2e.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Accurate Extraction (1.0)}} \\
+\midrule
+\textbf{Case 2: Near-Miss Audit Trap} & \textbf{Audit Question:} \textit{``What was the total volume of hazardous waste recycled by the chemical division in 2024?''} \\
+\textit{Source:} 2022 Report Excerpt & \textbf{Report Reality:} \textit{[Unanswerable: Excerpt covers 2022 water recycling, not 2024 hazardous waste]} \\
+(Wrong Year \& Metric) & \textbf{Required Auditor Action:} \textbf{Faithful Abstention} (\textit{``I cannot answer based on the provided documents.''}) \\
+\addlinespace[2pt]
+& \model{Qwen3-4B} \textbf{(Standard Prompt):} ``In 2024, the chemical division recycled 18,400 metric tons of hazardous waste through closed-loop filtration.'' $\rightarrow$ \textcolor{Red}{\textbf{Fabricated Figure / Hallucination (0.0)}} \\
+& \model{Gemma-4-31B} \textbf{(Standard Prompt):} ``Based on the provided documents, the company recycled approximately 12,500 cubic meters of wastewater in 2022.'' $\rightarrow$ \textcolor{Orange}{\textbf{Wrong Metric \& Year Substituted (0.2)}} \\
+& \model{DeepSeek-R1-7B} \textbf{(Standard Prompt):} ``\texttt{<think>The query asks for 2024 hazardous waste in the chemical division. The document only discusses 2022 water recycling. The required KPI is missing.</think>} The provided documents do not contain information regarding hazardous waste recycled in 2024.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Faithful Abstention (1.0)}} \\
+& \model{Gemma-4-31B} \textbf{(Strict Guardrail Prompt):} ``The provided documents do not contain information about the hazardous waste recycled in 2024.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Faithful Abstention (1.0)}} \\
+\bottomrule
+\end{tabularx}
+\end{table}

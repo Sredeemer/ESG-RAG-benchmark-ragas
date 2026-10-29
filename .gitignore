@@ -65,6 +65,27 @@ temp/
 # Generated embedding cache
 *.npy
 
-# LaTeX build helpers
-paper/main.fdb_latexmk
-paper/main.fls
+# Raw downloaded PDFs (converted .md files live in data/raw/)
+data/raw_pdfs_2025_2026/
+
+# Reference manuscripts & PDFs not part of codebase
+ESG-paper.pdf
+beautiful-paper.pdf
+humanizer.pdf
+yale-template.pdf
+
+# LaTeX build helpers & temp previews
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*_preview*.png
+paper/page_check_*.png
+
+# macOS system files
+.DS_Store
+*/.DS_Store

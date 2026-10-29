@@ -1,0 +1,72 @@
+{
+  "status": "completed",
+  "h100_gpu": "NVIDIA H100 80GB HBM3",
+  "total_h100_seconds": 19.32,
+  "qa_generation_seconds": 0.0,
+  "embedding_279k_chunks_seconds": 0.0,
+  "retrieval_seconds": 2.15,
+  "estimated_h100_cost_usd": 0.021,
+  "new_2025_2026_qa_generated": 60,
+  "benchmark_total_questions": 120,
+  "breakdown_by_type": {
+    "hard_kpi": 55,
+    "boilerplate": 65
+  },
+  "breakdown_by_era": {
+    "2010_2024_voluntary": 84,
+    "2025_2026_csrd": 36
+  },
+  "breakdown_by_persona": {
+    "Environmental KPI Extractor": 42,
+    "Governance KPI Extractor": 35,
+    "Social KPI Extractor": 43
+  },
+  "retrieval_diagnostics": {
+    "k1_source_doc_hit_rate": 0.5833,
+    "k3_source_doc_hit_rate": 0.7833,
+    "k1_same_company_wrong_year_rate": 0.2167,
+    "nearmiss_same_company_wrong_year_rate": 0.75
+  },
+  "sample_2025_2026_questions": [
+    {
+      "year": 2025,
+      "filename": "90008_87_2025.md",
+      "persona": "Environmental KPI Extractor",
+      "question_type": "hard_kpi",
+      "user_input": "What is the weighting assigned to \"Deliver on regulatory remediation, read across remediation work and maintain focus on sustainable embedment\" in Deutsche Bank's 2025 ESG document?",
+      "reference": "The weighting assigned to \"Deliver on regulatory remediation, read across remediation work and maintain focus on sustainable embedment\" in Deutsche Bank's 2025 ESG document is 20.00%."
+    },
+    {
+      "year": 2025,
+      "filename": "90003_52_2025.md",
+      "persona": "Social KPI Extractor",
+      "question_type": "hard_kpi",
+      "user_input": "What was the funded status of Continental AG's defined benefit pension plan in 2025?",
+      "reference": "The funded status of Continental AG's defined benefit pension plan in 2025 was \u2013\u20ac867 million."
+    },
+    {
+      "year": 2025,
+      "filename": "90014_910_2025.md",
+      "persona": "Governance KPI Extractor",
+      "question_type": "hard_kpi",
+      "user_input": "What percentage of jet fuel use does the company target for SAF by 2030, and what is the expected reduction in carbon intensity compared to the 2023 baseline?",
+      "reference": "The company targets 12.5% of jet fuel use from SAF by 2030, expecting a 13.5% reduction in carbon intensity compared to the 2023 baseline."
+    },
+    {
+      "year": 2025,
+      "filename": "90008_87_2025.md",
+      "persona": "Social KPI Extractor",
+      "question_type": "hard_kpi",
+      "user_input": "What is the range of virtual shares that Deutsche Bank employees may receive under the LTI plan at the end of the assessment period in 2025?",
+      "reference": "The range of virtual shares that Deutsche Bank employees may receive under the LTI plan at the end of the assessment period in 2025 is between 0% and 150% of the number initially allocated."
+    },
+    {
+      "year": 2025,
+      "filename": "90008_87_2025.md",
+      "persona": "Governance KPI Extractor",
+      "question_type": "hard_kpi",
+      "user_input": "What is the total target compensation for Laura Padovani in 2025, and how does it compare to market benchmarks?",
+      "reference": "The total target compensation for Laura Padovani in 2025 is \u20ac3,740,000 per annum, comprising \u20ac2,200,000 in fixed pay. This amount is set between the median and the 75th percentile of the relevant market benchmarks, reflecting an appropriate level given her performance and responsibilities."
+    }
+  ]
+}

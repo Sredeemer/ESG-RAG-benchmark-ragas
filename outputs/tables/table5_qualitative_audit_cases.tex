@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\centering
+\caption{Qualitative Audit Case Comparisons: Verbatim LLM Outputs on Hard Numerical KPI Extraction vs. Adversarial Near-Miss Trap.}
+\label{tab:qualitative_cases}
+\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Case & Context} & \textbf{Model Outputs \& Audit Verification} \\
+\midrule
+\textbf{Case 1: Hard KPI Extraction} & \textbf{Query:} \textit{``What was the company's total Scope 1 direct GHG emissions in metric tons for 2025?''} \\
+\textit{Context:} 2025 CSRD Report & \textbf{Reference Answer:} \textit{``Total Scope 1 emissions were 142,500 metric tons CO2e in 2025.''} \\
+\addlinespace[2pt]
+& \textbf{Qwen3-4B-Instruct:} ``The company reported Scope 1 direct emissions of approximately 142,500 tons CO2e in 2025.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Correct Extraction (1.0)}} \\
+& \textbf{DeepSeek-R1-Distill-7B:} ``\texttt{<think>...target is Scope 1 2025 emissions...value is 142,500...</think>} In 2025, Scope 1 GHG emissions were 142,500 MT CO2e.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Correct Extraction (1.0)}} \\
+& \textbf{GPT-OSS-20B:} ``The total Scope 1 direct greenhouse gas emissions for 2025 were 142,500 metric tons of CO2e.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Correct Extraction (1.0)}} \\
+\midrule
+\textbf{Case 2: Near-Miss Adversarial Trap} & \textbf{Query:} \textit{``What was the total volume of hazardous waste recycled by the chemical division in 2024?''} \\
+\textit{Context:} 2022 Sustainability Report & \textbf{Reference (Ground Truth):} \textit{[Unanswerable: Context covers 2022 water management, not 2024 hazardous waste]} \\
+(Cross-Company Near-Miss) & \textbf{Target Behavior:} \textbf{Faithful Abstention} (\textit{``I cannot answer based on the provided documents.''}) \\
+\addlinespace[2pt]
+& \textbf{Qwen3-4B-Instruct (Standard RAG):} ``In 2024, the chemical division recycled 18,400 metric tons of hazardous waste through closed-loop filtration.'' $\rightarrow$ \textcolor{Red}{\textbf{Hallucination / Fabrication (0.0)}} \\
+& \textbf{Gemma-4-31B-it (Standard RAG):} ``Based on the provided documents, the company recycled approximately 12,500 cubic meters of wastewater in 2022.'' $\rightarrow$ \textcolor{Orange}{\textbf{Metric/Temporal Substitution (0.2)}} \\
+& \textbf{DeepSeek-R1-Distill-7B:} ``\texttt{<think>The query asks for 2024 hazardous waste in the chemical division. The document only discusses 2022 water recycling. The required KPI is missing.</think>} The provided documents do not contain information regarding hazardous waste recycled in 2024.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Faithful Abstention (1.0)}} \\
+& \textbf{Gemma-4-31B-it (Strict Abstention):} ``The provided documents do not contain information about the hazardous waste recycled in 2024.'' $\rightarrow$ \textcolor{OliveGreen}{\textbf{Faithful Abstention (1.0)}} \\
+\bottomrule
+\end{tabularx}
+\end{table*}

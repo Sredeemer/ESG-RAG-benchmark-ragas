@@ -1,0 +1,162 @@
+[
+  {
+    "doc_id": 90001,
+    "company_id": 18,
+    "year": 2025,
+    "source_pdf": "18_2025_engie.pdf",
+    "output_md": "90001_18_2025.md",
+    "size_bytes": 121131
+  },
+  {
+    "doc_id": 90002,
+    "company_id": 27,
+    "year": 2025,
+    "source_pdf": "27_2025_arcelormittal.pdf",
+    "output_md": "90002_27_2025.md",
+    "size_bytes": 460871
+  },
+  {
+    "doc_id": 90003,
+    "company_id": 52,
+    "year": 2025,
+    "source_pdf": "52_2025_continental.pdf",
+    "output_md": "90003_52_2025.md",
+    "size_bytes": 1278947
+  },
+  {
+    "doc_id": 90004,
+    "company_id": 55,
+    "year": 2025,
+    "source_pdf": "55_2025_deutsche_telekom.pdf",
+    "output_md": "90004_55_2025.md",
+    "size_bytes": 1613091
+  },
+  {
+    "doc_id": 90005,
+    "company_id": 62,
+    "year": 2025,
+    "source_pdf": "62_2025_novo_nordisk.pdf",
+    "output_md": "90005_62_2025.md",
+    "size_bytes": 575575
+  },
+  {
+    "doc_id": 90006,
+    "company_id": 6,
+    "year": 2025,
+    "source_pdf": "6_2025_bayer.pdf",
+    "output_md": "90006_6_2025.md",
+    "size_bytes": 1548650
+  },
+  {
+    "doc_id": 90007,
+    "company_id": 79,
+    "year": 2026,
+    "source_pdf": "79_2026_sse.pdf",
+    "output_md": "90007_79_2026.md",
+    "size_bytes": 1193729
+  },
+  {
+    "doc_id": 90008,
+    "company_id": 87,
+    "year": 2025,
+    "source_pdf": "87_2025_deutsche_bank.pdf",
+    "output_md": "90008_87_2025.md",
+    "size_bytes": 2795403
+  },
+  {
+    "doc_id": 90009,
+    "company_id": 901,
+    "year": 2025,
+    "source_pdf": "901_2025_abb.pdf",
+    "output_md": "90009_901_2025.md",
+    "size_bytes": 486543
+  },
+  {
+    "doc_id": 90010,
+    "company_id": 903,
+    "year": 2025,
+    "source_pdf": "903_2025_sanofi.pdf",
+    "output_md": "90010_903_2025.md",
+    "size_bytes": 587618
+  },
+  {
+    "doc_id": 90011,
+    "company_id": 905,
+    "year": 2026,
+    "source_pdf": "905_2026_rsgroup.pdf",
+    "output_md": "90011_905_2026.md",
+    "size_bytes": 211182
+  },
+  {
+    "doc_id": 90012,
+    "company_id": 906,
+    "year": 2026,
+    "source_pdf": "906_2026_smulders.pdf",
+    "output_md": "90012_906_2026.md",
+    "size_bytes": 56224
+  },
+  {
+    "doc_id": 90013,
+    "company_id": 908,
+    "year": 2026,
+    "source_pdf": "908_2026_tullow.pdf",
+    "output_md": "90013_908_2026.md",
+    "size_bytes": 621179
+  },
+  {
+    "doc_id": 90014,
+    "company_id": 910,
+    "year": 2025,
+    "source_pdf": "910_2025_ryanair.pdf",
+    "output_md": "90014_910_2025.md",
+    "size_bytes": 287161
+  },
+  {
+    "doc_id": 90015,
+    "company_id": 912,
+    "year": 2026,
+    "source_pdf": "912_2026_nextplc.pdf",
+    "output_md": "90015_912_2026.md",
+    "size_bytes": 239245
+  },
+  {
+    "doc_id": 90016,
+    "company_id": 913,
+    "year": 2026,
+    "source_pdf": "913_2026_esgpro.pdf",
+    "output_md": "90016_913_2026.md",
+    "size_bytes": 77071
+  },
+  {
+    "doc_id": 90017,
+    "company_id": 914,
+    "year": 2026,
+    "source_pdf": "914_2026_acca.pdf",
+    "output_md": "90017_914_2026.md",
+    "size_bytes": 368610
+  },
+  {
+    "doc_id": 90018,
+    "company_id": 915,
+    "year": 2026,
+    "source_pdf": "915_2026_mcbgroup.pdf",
+    "output_md": "90018_915_2026.md",
+    "size_bytes": 469103
+  },
+  {
+    "doc_id": 90019,
+    "company_id": 916,
+    "year": 2026,
+    "source_pdf": "916_2026_icg.pdf",
+    "output_md": "90019_916_2026.md",
+    "size_bytes": 93343
+  },
+  {
+    "doc_id": 90020,
+    "company_id": 917,
+    "year": 2026,
+    "source_pdf": "917_2026_cae.pdf",
+    "output_md": "90020_917_2026.md",
+    "size_bytes": 493279
+  }
+]

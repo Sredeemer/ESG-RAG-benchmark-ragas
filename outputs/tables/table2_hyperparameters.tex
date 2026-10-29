@@ -1,0 +1,35 @@
+\begin{table}[t]
+\centering
+\caption{Implementation Hyperparameters Across Dataset Indexing, Benchmark Stratification, RAG Inference, and Independent LLM-as-a-Judge Evaluation.}
+\label{tab:hyperparameters}
+\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Pipeline Component} & \textbf{Configuration / Hyperparameter Specification} \\
+\midrule
+\multicolumn{2}{l}{\textit{\textbf{Corpus Indexing \& Preprocessing (Step 1)}}} \\
+\quad Raw Corpus Scope & 518 full ESG PDF reports (2010--2026), 279,862 text chunks \\
+\quad Extraction Engine & PyMuPDF (\texttt{fitz}) with heading casing heuristics \& layout preservation \\
+\quad Chunk Size / Overlap & 1,000 characters per chunk / 200 characters overlap (step size: 800) \\
+\quad Embedding Model & \texttt{Qwen/Qwen3-Embedding-4B} (native float16, 1024-dim, normalized) \\
+\quad Index Structure & Flat cosine similarity vector store over all 279,862 document embeddings \\
+\addlinespace[3pt]
+\multicolumn{2}{l}{\textit{\textbf{Stratified Benchmark Construction (Step 2)}}} \\
+\quad Testset Stratification & 120 QA pairs: 4 Taxonomies (Hard KPI, YoY, Policy, Synthesis) $\times$ 3 Eras \\
+\quad Persona Rotation & 3 Personas (Environmental KPI, Social KPI, Governance KPI) cyclically rotated \\
+\quad Context Variants & $k=1$, $k=3$, Oracle gold chunk, Near-Miss (unanswerable cross-company chunk) \\
+\addlinespace[3pt]
+\multicolumn{2}{l}{\textit{\textbf{H100 RAG Inference Serving (Step 3)}}} \\
+\quad Hardware / Virtualization & NVIDIA H100 80GB HBM3 GPU (Modal Cloud, KVM Linux container) \\
+\quad Precision / Quantization & Native \texttt{BFloat16} (Qwen, DeepSeek-R1, Gemma) / Native \texttt{MXFP4} (\texttt{gpt-oss-20b}) \\
+\quad Decoding Parameters & Greedy deterministic: \texttt{temperature = 0.0}, \texttt{do\_sample = False}, \texttt{top\_p = 1.0} \\
+\quad Context Truncation Guard & Max new tokens: 512; context window budget: 8,192 tokens \\
+\addlinespace[3pt]
+\multicolumn{2}{l}{\textit{\textbf{Independent LLM-as-a-Judge Evaluation (Step 4)}}} \\
+\quad Judge Model & \texttt{microsoft/phi-4} (14B dense, zero family overlap with evaluated generators) \\
+\quad Scoring Mechanism & RAGAS-compatible prompt parsing: Context Precision, Recall, Faithfulness, Relevancy \\
+\quad Numerical Recall Scorer & Regex entity extractor with unit normalization and target margin ($\pm 1\%$) \\
+\quad Total Evaluation Matrix & 5 models $\times$ 5 regimes $\times$ 120 queries = 3,000 full inference/evaluation rows \\
+\bottomrule
+\end{tabularx}
+\end{table}

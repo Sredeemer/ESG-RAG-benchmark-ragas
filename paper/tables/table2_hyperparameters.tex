@@ -1,0 +1,35 @@
+\begin{table}[H]
+\centering
+\caption{Summary of Technical Settings Across Document Processing, Audit Benchmark Design, Model Testing, and Independent Scoring.}
+\label{tab:hyperparameters}
+\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Pipeline Stage} & \textbf{Specification} \\
+\midrule
+\multicolumn{2}{l}{\textit{\textbf{1. Document Corpus \& Search Index}}} \\
+\quad Corpus Scope & 518 full-length corporate ESG reports (2010--2026), yielding 279,862 text passages \\
+\quad PDF Text Extraction & PyMuPDF (\texttt{fitz}) preserving section headings, tables, and page boundaries \\
+\quad Passage Length & 1,000 characters per passage with a 200-character overlap between consecutive passages \\
+\quad Search Embedding Model & \model{Qwen3-Embed-4B} (\texttt{Qwen/Qwen3-Embedding-4B}, 1,024-dimensional vectors) \\
+\quad Search Matching Method & Cosine similarity matching across all 279,862 indexed report passages \\
+\addlinespace[3pt]
+\multicolumn{2}{l}{\textit{\textbf{2. Stratified 120-Question Audit Benchmark}}} \\
+\quad Question Breakdown & 120 audit questions across 4 question types (Hard KPIs, Multi-Year Trends, Policies, Cross-Pillar) and 3 reporting eras \\
+\quad ESG Topic Balance & Balanced rotation across Environmental (E), Social (S), and Governance (G) auditor profiles \\
+\quad Evidence Conditions & Single-Passage ($k=1$), Three-Passage ($k=3$), Gold-Standard Passage (Oracle), and Near-Miss Distractor (Standard \& Strict Prompts) \\
+\addlinespace[3pt]
+\multicolumn{2}{l}{\textit{\textbf{3. Model Execution Infrastructure}}} \\
+\quad Compute Hardware & Single NVIDIA H100 80GB GPU hosted on Modal Cloud \\
+\quad Numerical Precision & Standard 16-bit (\texttt{BFloat16}) for dense models; native 4-bit (\texttt{MXFP4}) for \model{GPT-OSS-20B} \\
+\quad Generation Settings & Deterministic output (\texttt{temperature = 0.0}, greedy decoding) for 100\% audit reproducibility \\
+\quad Response Length Limit & Up to 512 generated words/tokens per answer; 8,192-token input window \\
+\addlinespace[3pt]
+\multicolumn{2}{l}{\textit{\textbf{4. Independent AI Referee (LLM-as-a-Judge)}}} \\
+\quad Referee Model & \model{Phi-4-14B} (\texttt{microsoft/phi-4}, 14B parameters; independent from all tested model families) \\
+\quad Core Quality Metrics & Context Precision, Context Recall, Faithfulness, Answer Relevancy, and Factual Correctness (F1) \\
+\quad Numerical KPI Verification & Automated number and unit verification allowing a $\pm 1\%$ rounding tolerance \\
+\quad Total Audit Volume & 5 models $\times$ 5 evidence conditions $\times$ 120 questions = 3,000 evaluated responses \\
+\bottomrule
+\end{tabularx}
+\end{table}

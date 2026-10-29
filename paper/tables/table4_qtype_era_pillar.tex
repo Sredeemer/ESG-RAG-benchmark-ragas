@@ -1,0 +1,30 @@
+\begin{table}[H]
+\centering
+\caption{Breakdown of Factual Extraction Accuracy (F1) by Question Type, Reporting Era, and ESG Pillar (Three-Passage Search $k=3$ vs.\ Gold-Standard Oracle Passage).}
+\label{tab:breakdown}
+\footnotesize
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\multirow{2}{*}{\textbf{Audit Dimension}} & \multicolumn{5}{c}{\textbf{Factual Accuracy: Top-$k=3$ Search / Gold Oracle}} & \multirow{2}{*}{\textbf{Avg.\ Gain ($\Delta$)}} \\
+\cmidrule(lr){2-6}
+ & \model{Qwen3-4B} & \model{DeepSeek-R1-7B} & \model{GPT-OSS-20B} & \model{Qwen3.5-27B} & \model{Gemma-4-31B} & \\
+\midrule
+\multicolumn{7}{l}{\textit{\textbf{Audit Question Type}}} \\
+\quad Hard Numerical KPIs ($N=55$) & 0.505 / 0.696 & 0.463 / 0.610 & 0.485 / 0.650 & 0.456 / 0.578 & 0.496 / 0.626 & +0.151 \\
+\quad Narrative Policies ($N=65$) & 0.477 / 0.662 & 0.408 / 0.608 & 0.554 / 0.800 & 0.531 / 0.600 & 0.538 / 0.669 & +0.148 \\
+\quad KPI vs.\ Policy Gap & \textit{+0.028 / +0.034} & \textit{+0.055 / +0.002} & \textit{-0.069 / -0.150} & \textit{-0.075 / -0.022} & \textit{-0.042 / -0.043} & -- \\
+\addlinespace[3pt]
+\multicolumn{7}{l}{\textit{\textbf{Regulatory Reporting Era}}} \\
+\quad 2010--2024 Pre-CSRD ($N=84$) & 0.533 / 0.643 & 0.433 / 0.579 & 0.517 / 0.706 & 0.508 / 0.589 & 0.528 / 0.638 & +0.129 \\
+\quad 2025--2026 Mandatory CSRD ($N=36$) & 0.389 / 0.758 & 0.432 / 0.679 & 0.535 / 0.791 & 0.470 / 0.592 & 0.497 / 0.676 & +0.235 \\
+\quad CSRD vs.\ Pre-CSRD Shift & \textit{-0.144 / +0.115} & \textit{-0.001 / +0.100} & \textit{+0.018 / +0.085} & \textit{-0.038 / +0.003} & \textit{-0.031 / +0.038} & -- \\
+\addlinespace[3pt]
+\multicolumn{7}{l}{\textit{\textbf{ESG Pillar}}} \\
+\quad Environmental (E, $N=42$) & 0.586 / 0.756 & 0.485 / 0.655 & 0.551 / 0.760 & 0.532 / 0.632 & 0.550 / 0.697 & +0.165 \\
+\quad Social (S, $N=43$) & 0.422 / 0.642 & 0.407 / 0.586 & 0.507 / 0.718 & 0.474 / 0.555 & 0.509 / 0.613 & +0.161 \\
+\quad Governance (G, $N=35$) & 0.457 / 0.626 & 0.401 / 0.578 & 0.503 / 0.713 & 0.480 / 0.581 & 0.490 / 0.634 & +0.166 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

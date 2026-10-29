@@ -1,191 +1,138 @@
-# SESG RAGAS Project
+# Auditing the Auditor: Extraction Accuracy, Hallucination, and Abstention in Open-Weight LLMs for ESG Reporting
 
-This project uses RAGAS (Retrieval-Augmented Generation Assessment) to evaluate RAG systems on Environmental, Social, and Governance (ESG) documents.
+**A Longitudinal Empirical Benchmark Across 518 Corporate Disclosures (2010–2026)**
 
-## Overview
+**Authors:** Kate Markin, Derek Amuna, Felix Coker, Redeemer Salami Okekale  
+**Institution:** University of Ghana  
+**Repository:** [https://github.com/Sredeemer/ESG-RAG-benchmark-ragas](https://github.com/Sredeemer/ESG-RAG-benchmark-ragas)
 
-The project consists of four main steps:
-1. **Data Generation** (`01_generate_testset.py`) - Generates test questions from ESG documents
-2. **Embedding Computation** (`02a_compute_embeddings.py`) - Embeds all corpus chunks once and saves to disk (run once after step 1)
-3. **RAG Evaluation** (`02_run_rag_evaluation.py`) - Runs RAG across 5 LLMs, loading embeddings from file
-4. **Analysis** (`03_analyze_results.py`) - Evaluates RAG responses using RAGAS metrics
+---
 
-## Setup
+## Abstract Overview
 
-### Prerequisites
-- Python 3.8+
-- Ollama installed and running
-- Required Ollama models:
-  - `qwen3:4b-instruct` (for generation/evaluation)
-  - `qwen3-embedding:4b` (for embeddings)
-  - Various small models for testing (see `02_run_rag_evaluation.py`)
+Corporate sustainability auditing increasingly relies on Large Language Models (LLMs) to extract verified quantitative metrics from lengthy Environmental, Social, and Governance (ESG) reports. This repository provides the complete, self-contained replication artifact for our empirical evaluation of five leading open-weight LLMs across 518 full-length corporate sustainability reports published between 2010 and 2026 (279,862 text passages).
 
-### Installation
+Evaluated Open-Weight Models:
+- **Qwen3-4B** (`Qwen/Qwen3-4B-Instruct`, 4.0B dense)
+- **DeepSeek-R1-7B** (`deepseek-ai/DeepSeek-R1-Distill-Qwen-7B`, 7.6B reasoning)
+- **GPT-OSS-20B** (`openai/gpt-oss-20b`, 20.9B total / 3.6B active MoE)
+- **Qwen3.5-27B** (`Qwen/Qwen3.5-27B`, 27.0B dense)
+- **Gemma-4-31B** (`google/gemma-4-31B-it`, 30.7B dense)
 
-1. Create and activate virtual environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate
+Independent AI Referee:
+- **Phi-4-14B** (`microsoft/phi-4`, 14.0B dense, independent from all generator families to eliminate self-enhancement bias)
+
+Five Evaluated Evidence Regimes (3,000 Total Model Completions):
+1. **Top-$k=1$ (Single Passage):** Minimal search context
+2. **Top-$k=3$ (Multi-Passage):** Combined search context
+3. **Oracle (Gold Source Passage):** Search errors isolated to establish reading ceiling
+4. **Near-Miss Standard:** Unanswerable distractor passage with standard helpful prompt
+5. **Near-Miss Strict:** Unanswerable distractor passage with strict compliance guardrail prompt
+
+---
+
+## Repository Structure
+
+```
+ESG-RAG-benchmark-ragas/
+├── code/
+│   ├── modal_esg_benchmark.py          # Complete end-to-end benchmark on Modal (H100 GPU)
+│   ├── 00_select_documents.py          # Longitudinal document selection and stratification
+│   ├── 00a_ingest_pdfs.py              # PyMuPDF structured text extraction
+│   ├── 00b_download_2025_2026_pdfs.py  # Acquisition of 2025-2026 CSRD/ESRS filings
+│   ├── 01_generate_testset.py          # Stratified 120-Q testset generation with balanced personas
+│   ├── 02a_compute_embeddings.py       # Corpus indexing with Qwen3-Embed-4B
+│   ├── 02_run_rag_evaluation.py        # Local evaluation runner
+│   ├── 03_analyze_results.py           # Metric aggregation and breakdown analysis
+│   ├── generate_publication_tables.py  # Generates Tables 1-5 (LaTeX)
+│   └── generate_publication_figures.py # Generates Figures 1-7 adhering to Cruz guidelines
+├── data/
+│   ├── raw/                            # 518 extracted markdown filings (2010-2026)
+│   └── documents/                      # Stratified document corpus for benchmarking
+├── outputs/
+│   ├── evaluation/                     # Full evaluation JSONs and aggregated CSV summaries
+│   │   ├── h100_5models_5regimes_summary.csv
+│   │   ├── h100_breakdown_by_qtype_and_era.csv
+│   │   ├── h100_persona_breakdown.csv
+│   │   └── h100_qualitative_audit_cases.json
+│   ├── figures/                        # Publication figures (PDF & high-res PNG)
+│   └── tables/                         # Publication tables (LaTeX)
+├── paper/                              # Complete LaTeX manuscript
+│   ├── main.tex                        # Self-contained academic paper
+│   ├── main.bib                        # Comprehensive bibliography
+│   ├── main.pdf                        # Compiled 20-page camera-ready PDF
+│   ├── figures/                        # Vector PDF figures
+│   └── tables/                         # Formatted LaTeX tables
+├── requirements.txt                    # Python dependencies
+├── .gitignore
+└── README.md
 ```
 
-2. Install dependencies:
+---
+
+## Quickstart & Replication
+
+### 1. Environment Setup
+
 ```bash
+git clone https://github.com/Sredeemer/ESG-RAG-benchmark-ragas.git
+cd ESG-RAG-benchmark-ragas
+
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Pull required Ollama models:
+### 2. Regenerate Publication Tables & Figures
+
+To regenerate all LaTeX tables and vector figures directly from the verified evaluation data:
+
 ```bash
-ollama pull qwen3:4b-instruct
-ollama pull qwen3-embedding:4b
+# Generate Tables 1 through 5
+python3 code/generate_publication_tables.py
+
+# Generate Figures 1 through 7 (Vector PDF + 300 DPI PNG)
+python3 code/generate_publication_figures.py
 ```
 
-## Usage
+### 3. Compile Manuscript
 
-### 1. Generate Test Data
+The paper is written in standard XeLaTeX / LuaLaTeX using the `XCharter` typography and compiles cleanly via `tectonic` or `latexmk`:
+
 ```bash
-python code/01_generate_testset.py
+cd paper
+tectonic -r 2 main.tex
+# or using latexmk
+latexmk -pdf main.tex
 ```
-Creates:
-- `outputs/01_esg_testset/01_esg_knowledge_graph.pkl` - Knowledge graph
-- `outputs/01_esg_testset/01_esg_testset.csv` - Test questions and references
 
-### 2a. Compute Embeddings (once)
+### 4. Running the Full 3,000-Completion Evaluation on Cloud GPU (Modal)
+
+The full evaluation runs 5 models $\times$ 5 regimes $\times$ 120 questions across an NVIDIA H100 80GB GPU. We provide the complete standalone runner in `code/modal_esg_benchmark.py`:
+
 ```bash
-python code/02a_compute_embeddings.py
-# or via runner:
-bash run_experiment.sh step2a
-```
-Embeds all corpus chunks with `qwen3-embedding:4b` and saves to `outputs/01_esg_testset/doc_embeddings.npy`. Run once — step 2 loads from this file on every run.
-
-### 2. Run RAG Evaluation
-```bash
-python code/02_run_rag_evaluation.py
-# or via runner:
-bash run_experiment.sh step2
-```
-Loads pre-computed embeddings, runs RAG across 5 models, saves responses to `outputs/02_rag_responses/`.
-
-### 3. Evaluate Performance
-```bash
-python code/03_analyze_results.py
-# or via runner:
-bash run_experiment.sh step3
-```
-Evaluates RAG responses using RAGAS metrics, saves results to `outputs/03_evaluation_results/`.
-
-## Project Structure
-
-```
-sesg-ragas/
-├── code/
-│   ├── 00_select_documents.py    # Document selection
-│   ├── 01_generate_testset.py    # Test data generation
-│   ├── 02a_compute_embeddings.py # Embedding computation (run once)
-│   ├── 02_run_rag_evaluation.py  # RAG evaluation across models
-│   └── 03_analyze_results.py     # Evaluation
-├── data/                  # ESG document corpus
-│   ├── raw/               # Source ESG documents (498 documents)
-│   └── documents/         # Selected documents (copied by 00_select_documents.py)
-├── outputs/               # All generated files
-│   ├── 01_esg_knowledge_graph.pkl  # Knowledge graph
-│   ├── 01_esg_testset.csv          # Test questions
-│   ├── 02_rag_responses/          # RAG responses for each model
-│   └── 03_evaluation_results/     # Evaluation results for each model
-├── requirements.txt        # Python dependencies
-├── .gitignore            # Git ignore file
-└── README.md             # This file
+pip install modal
+modal setup
+modal run code/modal_esg_benchmark.py
 ```
 
-## Evaluation Metrics
+---
 
-The project uses the following RAGAS metrics:
-- **Context Precision** - Relevance of retrieved context
-- **Context Recall** - Completeness of retrieved context
-- **Context Relevance** - How well context matches the query
-- **Faithfulness** - Factual consistency of the answer
-- **Factual Correctness** - Accuracy of the answer
-- **Answer Relevancy** - How well the answer addresses the query
+## Citation
 
-## Experimental Design
+If you use this benchmark, code, or findings in your research, please cite:
 
-### Document Dataset
-- **Dataset Size**: 100 ESG documents selected from the full corpus of 498 documents
-- **Selection Strategy**: Representative sampling across years (2010-2024) and ESG topics (Environmental, Social, Governance)
-- **Purpose**: Statistically significant evaluation while maintaining computational feasibility
+```bibtex
+@article{markin2026auditing,
+  title={Auditing the Auditor: Extraction Accuracy, Hallucination, and Abstention in Open-Weight LLMs for ESG Reporting},
+  author={Markin, Kate and Amuna, Derek and Coker, Felix and Okekale, Redeemer Salami},
+  journal={arXiv preprint},
+  year={2026}
+}
+```
 
-### Model Selection Strategy
+---
 
-#### Size Range Justification
-**Focus Range**: 4B-14B parameter models
+## License
 
-**Selection Criteria:**
-- **Practical Relevance**: 4B-14B range represents the sweet spot for real-world applications balancing performance and computational efficiency
-- **Computational Feasibility**: Models in this range can be evaluated within reasonable timeframes for academic research
-- **Research Impact**: Provides meaningful insights into size scaling without prohibitive resource requirements
-- **Reproducibility**: Selected sizes are accessible to most research institutions for validation
-
-#### Model Families Evaluated
-
-**Final Model Selection** (5 models - one per family)
-
-**Qwen Series** (1 model - Balanced Representative)
-- qwen3:4b-instruct
-- **Rationale**: 4B parameter model provides optimal balance of performance and efficiency from Alibaba's comprehensive family
-
-**Gemma Series** (1 model - Google Latest Generation)
-- gemma3:4b
-- **Rationale**: Google's latest generation 4B model representing cutting-edge architecture from major tech company
-
-**Ministral Series** (1 model - European Representative)
-- ministral-3:8b
-- **Rationale**: 8B parameter model from leading European AI company, representing larger model performance
-
-**Nemotron Series** (1 model - NVIDIA Enterprise)
-- nemotron-3-nano:4b
-- **Rationale**: NVIDIA's optimized 4B model for enterprise applications with strong engineering focus
-
-**GLM Series** (1 model - Quantized Efficiency)
-- glm-4.7-flash:q4_K_M
-- **Rationale**: Quantized 4B model representing efficiency-focused approaches from Zhipu AI
-
-**Selection Strategy:**
-- **Final Implementation**: 5 models across 5 families for comprehensive evaluation
-- **Size Range**: 4B-8B parameters covering practical deployment scenarios
-- **Family Diversity**: Each model represents a major AI research organization/geographic region
-- **Evaluation Time**: ~9.5 hours total for complete 498-document evaluation
-- **Maintains**: Architectural diversity while ensuring computational feasibility
-
-#### Research Design Benefits
-
-**Size Range Evaluated**:
-- 4B parameters: qwen3:4b-instruct, gemma3:4b, nemotron-3-nano:4b, glm-4.7-flash:q4_K_M (quantized)
-- 8B parameters: ministral-3:8b
-
-**Family Comparison**:
-- **Architectural Diversity**: Different training methodologies and model architectures
-- **Geographic Diversity**: Models from US, Europe, and China
-- **Training Paradigms**: Various approaches to LLM development
-
-**Sample Size**:
-- **5 models** across **5 families** for cross-family comparison
-- **100 synthetic QA pairs** (Environmental: 97 / Social: 94 / Governance: 93 in the 284-pair generation pool; first 100 used for evaluation)
-- **500 model-query evaluations** in total
-
-**Computational Footprint**:
-- **Total evaluation time**: ~9.5 hours for the full 498-document setup across all 5 models
-- **Resource requirements**: Manageable for academic research settings (RTX 6000 Ada, 48 GB VRAM)
-
-**Total Models**: 5 open-source models across 5 families.
-
-## Output Files
-
-- `outputs/01_esg_knowledge_graph.pkl` - Knowledge graph of ESG documents
-- `outputs/01_esg_testset.csv` - Generated test questions and references
-- `outputs/02_rag_responses/` - RAG responses for each model
-- `outputs/03_evaluation_results/` - Evaluation results for each model
-
-## Notes
-
-- Ensure Ollama is running before executing the scripts
-- The evaluation process can be time-consuming due to multiple models
-- Results are saved in JSON format for further analysis
+This project is licensed under the Apache 2.0 License. All evaluation data and code are provided for academic research and sustainability assurance benchmarking.

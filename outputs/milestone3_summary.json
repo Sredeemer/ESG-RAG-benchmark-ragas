@@ -1,0 +1,318 @@
+{
+  "status": "completed",
+  "h100_gpu": "NVIDIA H100 80GB HBM3",
+  "total_wall_seconds": 1456.74,
+  "estimated_h100_cost_usd": 1.598,
+  "models": {
+    "qwen3_4b": {
+      "slug": "qwen3_4b",
+      "repo_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "label": "Qwen3-4B-Instruct (4B Dense Baseline)",
+      "family": "Qwen",
+      "params_b": 4.0,
+      "active_params_b": 4.0,
+      "load_seconds": 6.17,
+      "generation_seconds": 160.82,
+      "total_seconds": 167.01,
+      "vram_allocated_gb": 7.49,
+      "estimated_cost_usd": 0.183,
+      "regimes": {
+        "k1": {
+          "overall_abstention_rate": 0.2667,
+          "hard_kpi_abstention_rate": 0.4182,
+          "boilerplate_abstention_rate": 0.1385,
+          "hard_kpi_numeric_recall_overall": 0.4015,
+          "hard_kpi_numeric_recall_when_answered": 0.6901,
+          "voluntary_2010_2024_abstention_rate": 0.2381,
+          "csrd_2025_2026_abstention_rate": 0.3333,
+          "k1_source_miss_abstention_rate": 0.4,
+          "k1_wrong_year_same_company_abstention_rate": 0.4231
+        },
+        "k3": {
+          "overall_abstention_rate": 0.1667,
+          "hard_kpi_abstention_rate": 0.2545,
+          "boilerplate_abstention_rate": 0.0923,
+          "hard_kpi_numeric_recall_overall": 0.5667,
+          "hard_kpi_numeric_recall_when_answered": 0.7602,
+          "voluntary_2010_2024_abstention_rate": 0.0833,
+          "csrd_2025_2026_abstention_rate": 0.3611
+        },
+        "oracle": {
+          "overall_abstention_rate": 0.175,
+          "hard_kpi_abstention_rate": 0.1636,
+          "boilerplate_abstention_rate": 0.1846,
+          "hard_kpi_numeric_recall_overall": 0.703,
+          "hard_kpi_numeric_recall_when_answered": 0.8406,
+          "voluntary_2010_2024_abstention_rate": 0.1905,
+          "csrd_2025_2026_abstention_rate": 0.1389
+        },
+        "nearmiss_standard": {
+          "overall_abstention_rate": 0.5583,
+          "hard_kpi_abstention_rate": 0.7636,
+          "boilerplate_abstention_rate": 0.3846,
+          "hard_kpi_numeric_recall_overall": 0.0848,
+          "hard_kpi_numeric_recall_when_answered": 0.359,
+          "voluntary_2010_2024_abstention_rate": 0.5,
+          "csrd_2025_2026_abstention_rate": 0.6944
+        },
+        "nearmiss_strict": {
+          "overall_abstention_rate": 0.7583,
+          "hard_kpi_abstention_rate": 0.8364,
+          "boilerplate_abstention_rate": 0.6923,
+          "hard_kpi_numeric_recall_overall": 0.0636,
+          "hard_kpi_numeric_recall_when_answered": 0.3889,
+          "voluntary_2010_2024_abstention_rate": 0.6548,
+          "csrd_2025_2026_abstention_rate": 1.0
+        }
+      }
+    },
+    "deepseek_r1_7b": {
+      "slug": "deepseek_r1_7b",
+      "repo_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "label": "DeepSeek-R1-Distill-Qwen-7B (7B Reasoning)",
+      "family": "DeepSeek-R1",
+      "params_b": 7.6,
+      "active_params_b": 7.6,
+      "load_seconds": 35.11,
+      "generation_seconds": 419.28,
+      "total_seconds": 454.42,
+      "vram_allocated_gb": 14.19,
+      "estimated_cost_usd": 0.499,
+      "regimes": {
+        "k1": {
+          "overall_abstention_rate": 0.125,
+          "hard_kpi_abstention_rate": 0.1455,
+          "boilerplate_abstention_rate": 0.1077,
+          "hard_kpi_numeric_recall_overall": 0.4242,
+          "hard_kpi_numeric_recall_when_answered": 0.4965,
+          "voluntary_2010_2024_abstention_rate": 0.0833,
+          "csrd_2025_2026_abstention_rate": 0.2222,
+          "k1_source_miss_abstention_rate": 0.22,
+          "k1_wrong_year_same_company_abstention_rate": 0.2308
+        },
+        "k3": {
+          "overall_abstention_rate": 0.0917,
+          "hard_kpi_abstention_rate": 0.1091,
+          "boilerplate_abstention_rate": 0.0769,
+          "hard_kpi_numeric_recall_overall": 0.5303,
+          "hard_kpi_numeric_recall_when_answered": 0.5952,
+          "voluntary_2010_2024_abstention_rate": 0.0476,
+          "csrd_2025_2026_abstention_rate": 0.1944
+        },
+        "oracle": {
+          "overall_abstention_rate": 0.1167,
+          "hard_kpi_abstention_rate": 0.1818,
+          "boilerplate_abstention_rate": 0.0615,
+          "hard_kpi_numeric_recall_overall": 0.6242,
+          "hard_kpi_numeric_recall_when_answered": 0.763,
+          "voluntary_2010_2024_abstention_rate": 0.131,
+          "csrd_2025_2026_abstention_rate": 0.0833
+        },
+        "nearmiss_standard": {
+          "overall_abstention_rate": 0.3667,
+          "hard_kpi_abstention_rate": 0.4364,
+          "boilerplate_abstention_rate": 0.3077,
+          "hard_kpi_numeric_recall_overall": 0.1576,
+          "hard_kpi_numeric_recall_when_answered": 0.2796,
+          "voluntary_2010_2024_abstention_rate": 0.3214,
+          "csrd_2025_2026_abstention_rate": 0.4722
+        },
+        "nearmiss_strict": {
+          "overall_abstention_rate": 0.65,
+          "hard_kpi_abstention_rate": 0.7091,
+          "boilerplate_abstention_rate": 0.6,
+          "hard_kpi_numeric_recall_overall": 0.0818,
+          "hard_kpi_numeric_recall_when_answered": 0.2812,
+          "voluntary_2010_2024_abstention_rate": 0.5476,
+          "csrd_2025_2026_abstention_rate": 0.8889
+        }
+      }
+    },
+    "gpt_oss_20b": {
+      "slug": "gpt_oss_20b",
+      "repo_id": "openai/gpt-oss-20b",
+      "label": "OpenAI gpt-oss-20b (21B MoE, 3.6B Active)",
+      "family": "GPT-OSS",
+      "params_b": 20.9,
+      "active_params_b": 3.6,
+      "load_seconds": 13.71,
+      "generation_seconds": 529.56,
+      "total_seconds": 543.32,
+      "vram_allocated_gb": 38.97,
+      "estimated_cost_usd": 0.596,
+      "regimes": {
+        "k1": {
+          "overall_abstention_rate": 0.1833,
+          "hard_kpi_abstention_rate": 0.2182,
+          "boilerplate_abstention_rate": 0.1538,
+          "hard_kpi_numeric_recall_overall": 0.4561,
+          "hard_kpi_numeric_recall_when_answered": 0.5833,
+          "voluntary_2010_2024_abstention_rate": 0.1429,
+          "csrd_2025_2026_abstention_rate": 0.2778,
+          "k1_source_miss_abstention_rate": 0.32,
+          "k1_wrong_year_same_company_abstention_rate": 0.3077
+        },
+        "k3": {
+          "overall_abstention_rate": 0.1167,
+          "hard_kpi_abstention_rate": 0.1818,
+          "boilerplate_abstention_rate": 0.0615,
+          "hard_kpi_numeric_recall_overall": 0.5303,
+          "hard_kpi_numeric_recall_when_answered": 0.6481,
+          "voluntary_2010_2024_abstention_rate": 0.1071,
+          "csrd_2025_2026_abstention_rate": 0.1389
+        },
+        "oracle": {
+          "overall_abstention_rate": 0.1083,
+          "hard_kpi_abstention_rate": 0.1636,
+          "boilerplate_abstention_rate": 0.0615,
+          "hard_kpi_numeric_recall_overall": 0.6576,
+          "hard_kpi_numeric_recall_when_answered": 0.7862,
+          "voluntary_2010_2024_abstention_rate": 0.1429,
+          "csrd_2025_2026_abstention_rate": 0.0278
+        },
+        "nearmiss_standard": {
+          "overall_abstention_rate": 0.5917,
+          "hard_kpi_abstention_rate": 0.6364,
+          "boilerplate_abstention_rate": 0.5538,
+          "hard_kpi_numeric_recall_overall": 0.1212,
+          "hard_kpi_numeric_recall_when_answered": 0.3333,
+          "voluntary_2010_2024_abstention_rate": 0.4762,
+          "csrd_2025_2026_abstention_rate": 0.8611
+        },
+        "nearmiss_strict": {
+          "overall_abstention_rate": 0.8,
+          "hard_kpi_abstention_rate": 0.8909,
+          "boilerplate_abstention_rate": 0.7231,
+          "hard_kpi_numeric_recall_overall": 0.0636,
+          "hard_kpi_numeric_recall_when_answered": 0.5833,
+          "voluntary_2010_2024_abstention_rate": 0.7143,
+          "csrd_2025_2026_abstention_rate": 1.0
+        }
+      }
+    },
+    "qwen3_5_27b": {
+      "slug": "qwen3_5_27b",
+      "repo_id": "Qwen/Qwen3.5-27B",
+      "label": "Qwen3.5-27B (27B Dense Flagship)",
+      "family": "Qwen",
+      "params_b": 27.0,
+      "active_params_b": 27.0,
+      "load_seconds": 77.44,
+      "generation_seconds": 478.83,
+      "total_seconds": 556.34,
+      "vram_allocated_gb": 50.1,
+      "estimated_cost_usd": 0.61,
+      "regimes": {
+        "k1": {
+          "overall_abstention_rate": 0.3917,
+          "hard_kpi_abstention_rate": 0.4727,
+          "boilerplate_abstention_rate": 0.3231,
+          "hard_kpi_numeric_recall_overall": 0.3591,
+          "hard_kpi_numeric_recall_when_answered": 0.681,
+          "voluntary_2010_2024_abstention_rate": 0.3214,
+          "csrd_2025_2026_abstention_rate": 0.5556,
+          "k1_source_miss_abstention_rate": 0.5,
+          "k1_wrong_year_same_company_abstention_rate": 0.5769
+        },
+        "k3": {
+          "overall_abstention_rate": 0.2167,
+          "hard_kpi_abstention_rate": 0.3636,
+          "boilerplate_abstention_rate": 0.0923,
+          "hard_kpi_numeric_recall_overall": 0.5,
+          "hard_kpi_numeric_recall_when_answered": 0.7857,
+          "voluntary_2010_2024_abstention_rate": 0.1786,
+          "csrd_2025_2026_abstention_rate": 0.3056
+        },
+        "oracle": {
+          "overall_abstention_rate": 0.275,
+          "hard_kpi_abstention_rate": 0.3091,
+          "boilerplate_abstention_rate": 0.2462,
+          "hard_kpi_numeric_recall_overall": 0.6,
+          "hard_kpi_numeric_recall_when_answered": 0.8684,
+          "voluntary_2010_2024_abstention_rate": 0.2738,
+          "csrd_2025_2026_abstention_rate": 0.2778
+        },
+        "nearmiss_standard": {
+          "overall_abstention_rate": 0.6583,
+          "hard_kpi_abstention_rate": 0.7455,
+          "boilerplate_abstention_rate": 0.5846,
+          "hard_kpi_numeric_recall_overall": 0.1091,
+          "hard_kpi_numeric_recall_when_answered": 0.4286,
+          "voluntary_2010_2024_abstention_rate": 0.5357,
+          "csrd_2025_2026_abstention_rate": 0.9444
+        },
+        "nearmiss_strict": {
+          "overall_abstention_rate": 0.7833,
+          "hard_kpi_abstention_rate": 0.8727,
+          "boilerplate_abstention_rate": 0.7077,
+          "hard_kpi_numeric_recall_overall": 0.0545,
+          "hard_kpi_numeric_recall_when_answered": 0.4286,
+          "voluntary_2010_2024_abstention_rate": 0.6905,
+          "csrd_2025_2026_abstention_rate": 1.0
+        }
+      }
+    },
+    "gemma4_31b": {
+      "slug": "gemma4_31b",
+      "repo_id": "google/gemma-4-31B-it",
+      "label": "Gemma-4-31B-it (31B Dense Flagship)",
+      "family": "Gemma",
+      "params_b": 30.7,
+      "active_params_b": 30.7,
+      "load_seconds": 106.88,
+      "generation_seconds": 1344.41,
+      "total_seconds": 1451.42,
+      "vram_allocated_gb": 58.25,
+      "estimated_cost_usd": 1.593,
+      "regimes": {
+        "k1": {
+          "overall_abstention_rate": 0.2917,
+          "hard_kpi_abstention_rate": 0.4,
+          "boilerplate_abstention_rate": 0.2,
+          "hard_kpi_numeric_recall_overall": 0.3955,
+          "hard_kpi_numeric_recall_when_answered": 0.6591,
+          "voluntary_2010_2024_abstention_rate": 0.25,
+          "csrd_2025_2026_abstention_rate": 0.3889,
+          "k1_source_miss_abstention_rate": 0.44,
+          "k1_wrong_year_same_company_abstention_rate": 0.5
+        },
+        "k3": {
+          "overall_abstention_rate": 0.1417,
+          "hard_kpi_abstention_rate": 0.2182,
+          "boilerplate_abstention_rate": 0.0769,
+          "hard_kpi_numeric_recall_overall": 0.5576,
+          "hard_kpi_numeric_recall_when_answered": 0.7132,
+          "voluntary_2010_2024_abstention_rate": 0.119,
+          "csrd_2025_2026_abstention_rate": 0.1944
+        },
+        "oracle": {
+          "overall_abstention_rate": 0.1833,
+          "hard_kpi_abstention_rate": 0.2,
+          "boilerplate_abstention_rate": 0.1692,
+          "hard_kpi_numeric_recall_overall": 0.6515,
+          "hard_kpi_numeric_recall_when_answered": 0.8144,
+          "voluntary_2010_2024_abstention_rate": 0.2143,
+          "csrd_2025_2026_abstention_rate": 0.1111
+        },
+        "nearmiss_standard": {
+          "overall_abstention_rate": 0.65,
+          "hard_kpi_abstention_rate": 0.7818,
+          "boilerplate_abstention_rate": 0.5385,
+          "hard_kpi_numeric_recall_overall": 0.1273,
+          "hard_kpi_numeric_recall_when_answered": 0.5833,
+          "voluntary_2010_2024_abstention_rate": 0.5476,
+          "csrd_2025_2026_abstention_rate": 0.8889
+        },
+        "nearmiss_strict": {
+          "overall_abstention_rate": 0.7417,
+          "hard_kpi_abstention_rate": 0.8,
+          "boilerplate_abstention_rate": 0.6923,
+          "hard_kpi_numeric_recall_overall": 0.0909,
+          "hard_kpi_numeric_recall_when_answered": 0.4545,
+          "voluntary_2010_2024_abstention_rate": 0.631,
+          "csrd_2025_2026_abstention_rate": 1.0
+        }
+      }
+    }
+  }
+}

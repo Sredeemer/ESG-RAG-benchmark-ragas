@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\centering
+\caption{Granular Breakdown of Extraction Factual Correctness (F1) Across Audit Question Taxonomy, Longitudinal Regulatory Eras, and ESG Pillars (Top-$k=3$ vs. Oracle Ceiling).}
+\label{tab:breakdown}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\multirow{2}{*}{\textbf{Evaluation Dimension}} & \multicolumn{5}{c}{\textbf{Model Performance (Top-$k=3$ / Oracle)}} & \multirow{2}{*}{\textbf{Mean Gap ($\Delta$)}} \\
+\cmidrule(lr){2-6}
+ & \textbf{Qwen3-4B} & \textbf{DeepSeek-R1-7B} & \textbf{GPT-OSS-20B} & \textbf{Qwen3.5-27B} & \textbf{Gemma-4-31B} & \\
+\midrule
+\multicolumn{7}{l}{\textit{\textbf{Audit Question Taxonomy}}} \\
+\quad Hard Numerical KPI (N=55) & 0.505 / 0.696 & 0.463 / 0.610 & 0.485 / 0.650 & 0.456 / 0.578 & 0.496 / 0.626 & +0.151 (Oracle Ceiling) \\
+\quad Policy / Boilerplate (N=65) & 0.477 / 0.662 & 0.408 / 0.608 & 0.554 / 0.800 & 0.531 / 0.600 & 0.538 / 0.669 & +0.148 (Oracle Ceiling) \\
+\quad KPI vs. Boilerplate Gap & \textit{+0.028 / +0.034} & \textit{+0.055 / +0.002} & \textit{-0.069 / -0.150} & \textit{-0.075 / -0.022} & \textit{-0.042 / -0.043} & --- \\
+\addlinespace[3pt]
+\multicolumn{7}{l}{\textit{\textbf{Longitudinal Regulatory Era}}} \\
+\quad 2010--2024 Voluntary Era (N=84) & 0.533 / 0.643 & 0.433 / 0.579 & 0.517 / 0.706 & 0.508 / 0.589 & 0.528 / 0.638 & +0.129 (Oracle Ceiling) \\
+\quad 2025--2026 CSRD/ESRS Era (N=36) & 0.389 / 0.758 & 0.432 / 0.679 & 0.535 / 0.791 & 0.470 / 0.592 & 0.497 / 0.676 & +0.235 (Oracle Ceiling) \\
+\quad CSRD vs. Voluntary Gap & \textit{-0.144 / +0.115} & \textit{-0.001 / +0.100} & \textit{+0.018 / +0.085} & \textit{-0.038 / +0.003} & \textit{-0.031 / +0.038} & --- \\
+\addlinespace[3pt]
+\multicolumn{7}{l}{\textit{\textbf{ESG Pillar (Persona-Driven)}}} \\
+\quad Environmental (E, N=42) & 0.586 / 0.756 & 0.485 / 0.655 & 0.551 / 0.760 & 0.532 / 0.632 & 0.550 / 0.697 & +0.165 (Oracle Ceiling) \\
+\quad Social (S, N=43) & 0.422 / 0.642 & 0.407 / 0.586 & 0.507 / 0.718 & 0.474 / 0.555 & 0.509 / 0.613 & +0.161 (Oracle Ceiling) \\
+\quad Governance (G, N=35) & 0.457 / 0.626 & 0.401 / 0.578 & 0.503 / 0.713 & 0.480 / 0.581 & 0.490 / 0.634 & +0.166 (Oracle Ceiling) \\
+\bottomrule
+\end{tabular}
+\end{table*}
