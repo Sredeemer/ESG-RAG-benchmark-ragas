@@ -103,7 +103,7 @@
 
 % --- Citations & Hyperlinks ---
 \usepackage[numbers,sort&compress,square]{natbib}
-\setlength{\bibsep}{2.8pt}
+\setlength{\bibsep}{1.2pt}
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
 
 \begin{document}
@@ -115,10 +115,10 @@
 \large A Longitudinal Empirical Benchmark Across 518 Corporate Disclosures (2010--2026)}
 
 \author{
-  \textbf{Kate Markin}\,$^{1}$\,\thanks{Corresponding author: \href{mailto:kmarkin001@st.ug.edu.gh}{\texttt{kmarkin001@st.ug.edu.gh}} \quad\textbar\quad ORCID: \href{https://orcid.org/0009-0004-3037-8888}{0009-0004-3037-8888}}\qquad
-  \textbf{Derek Amuna}\,$^{1}$\,\thanks{\href{mailto:dadadee02@gmail.com}{\texttt{dadadee02@gmail.com}} \quad\textbar\quad ORCID: \href{https://orcid.org/0009-0003-1889-7602}{0009-0003-1889-7602}}\qquad
-  \textbf{Felix Coker}\qquad
-  \textbf{Redeemer Salami Okekale}\\[0.8ex]
+  \textbf{Redeemer Salami O.}\,\thanks{Corresponding author: \href{mailto:redeemersalamiokekale@gmail.com}{\texttt{redeemersalamiokekale@gmail.com}} \quad\textbar\quad ORCID: \href{https://orcid.org/0009-0000-2900-592X}{0009-0000-2900-592X}}\qquad
+  \textbf{Kate Markin}\,$^{1}$\,\thanks{ORCID: \href{https://orcid.org/0009-0004-3037-8888}{0009-0004-3037-8888} \quad\textbar\quad \href{mailto:kmarkin001@st.ug.edu.gh}{\texttt{kmarkin001@st.ug.edu.gh}}}\qquad
+  \textbf{Derek Amuna}\,$^{1}$\,\thanks{ORCID: \href{https://orcid.org/0009-0003-1889-7602}{0009-0003-1889-7602} \quad\textbar\quad \href{mailto:dadadee02@gmail.com}{\texttt{dadadee02@gmail.com}}}\qquad
+  \textbf{Felix Coker}\,\thanks{ORCID: \href{https://orcid.org/0009-0007-7509-8371}{0009-0007-7509-8371}}\\[0.8ex]
   $^{1}$\normalsize University of Ghana
 }
 \date{\normalsize October 2026}
@@ -185,8 +185,8 @@ In Step 1 (Equation~\ref{eq:retrieval}), an embedding model $E(\cdot)$ converts 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.92\linewidth]{figures/fig1_rag_architecture.pdf}
-  \caption{Overview of our five-stage ESG audit evaluation pipeline. Report passages from 518 corporate disclosures are matched to audit questions under five evidence conditions ($k=1$, $k=3$, Oracle, Near-Miss Standard, and Near-Miss Strict). Responses from five open-weight LLMs are graded by an independent referee model (\model{Phi-4-14B}) to ensure fair, unbiased scoring.}
+  \includegraphics[width=0.96\linewidth]{figures/fig1_rag_architecture.pdf}
+  \caption{Overview of our five-stage ESG audit evaluation pipeline. Report passages from 518 corporate disclosures are matched to audit questions under five evidence conditions ($k=1$, $k=3$, Oracle, Near-Miss Standard, and Near-Miss Strict). Responses from five open-weight LLMs are graded by an independent referee model (\model{Phi-4-14B}) to ensure fair, unbiased scoring. Figure created with BioRender.com.}
   \label{fig:architecture}
 \end{figure}
 
@@ -320,6 +320,12 @@ When given just a single search passage ($k=1$), all five models stick closely t
 
 Expanding the search window from one passage ($k=1$) to three passages ($k=3$) raises search recall ($\mi{CtxRec}$ jumps from 0.562 to 0.662) and improves factual accuracy for every model in our test. Under $k=3$, \model{GPT-OSS-20B} (0.522) and \model{Gemma-4-31B} (0.519) take the top two spots, with \model{Qwen3.5-27B} rising to 0.497 and \model{Qwen3-4B} reaching 0.490. For hard numerical KPIs specifically, three-passage context lifts extraction accuracy by 7 to 15 percentage points across all five models.
 
+\subsection{Search Bottleneck vs.\ Model Reading Ceiling \texorpdfstring{($k=1 \to k=3 \to \text{Oracle}$)}{(k=1 -> k=3 -> Oracle)}}
+When an automated ESG audit produces a wrong number, who is to blame: the search engine for pulling the wrong page, or the LLM for misreading the table? Figure~\ref{fig:retrieval_scaling} separates these two factors by tracking accuracy from single-passage search ($k=1$) to three-passage search ($k=3$) and finally to the gold-standard Oracle passage.
+
+\noindent\textbf{Finding 1 (Table-Reading Limits Matter Even When Search Is Perfect).}
+\textit{Handing models the exact gold-standard passage (Oracle) boosts factual accuracy by an average of +16.0 percentage points over $k=3$ search (rising from 0.492 to 0.651). Yet even with the exact right passage in front of it, the top-performing model (\model{GPT-OSS-20B}) tops out at 0.731 F1, leaving a 26.9-point accuracy gap caused by misreading dense multi-column ESG tables and footnotes.}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.92\linewidth]{figures/fig3_master_heatmap.pdf}
@@ -328,12 +334,6 @@ Expanding the search window from one passage ($k=1$) to three passages ($k=3$) r
 \end{figure}
 
 \input{tables/table3_main_5models_5regimes.tex}
-
-\subsection{Search Bottleneck vs.\ Model Reading Ceiling \texorpdfstring{($k=1 \to k=3 \to \text{Oracle}$)}{(k=1 -> k=3 -> Oracle)}}
-When an automated ESG audit produces a wrong number, who is to blame: the search engine for pulling the wrong page, or the LLM for misreading the table? Figure~\ref{fig:retrieval_scaling} separates these two factors by tracking accuracy from single-passage search ($k=1$) to three-passage search ($k=3$) and finally to the gold-standard Oracle passage.
-
-\noindent\textbf{Finding 1 (Table-Reading Limits Matter Even When Search Is Perfect).}
-\textit{Handing models the exact gold-standard passage (Oracle) boosts factual accuracy by an average of +16.0 percentage points over $k=3$ search (rising from 0.492 to 0.651). Yet even with the exact right passage in front of it, the top-performing model (\model{GPT-OSS-20B}) tops out at 0.731 F1, leaving a 26.9-point accuracy gap caused by misreading dense multi-column ESG tables and footnotes.}
 
 Look closely at the Oracle section of Table~\ref{tab:master_results}. When search errors are removed, \model{GPT-OSS-20B} reaches 0.731 factual accuracy, \model{Qwen3-4B} reaches 0.677, and \model{Gemma-4-31B} reaches 0.649. At the same time, faithfulness climbs above 0.887 for every model, reaching 0.971 on \model{Qwen3.5-27B}. In plain terms, once an LLM is shown the right excerpt from a sustainability report, it rarely invents outside claims; instead, its remaining mistakes come from misaligning row headers, confusing parent-company vs.\ consolidated subsidiary columns, or dropping measurement units (such as reading thousands of tons as single tons).
 
@@ -465,8 +465,11 @@ Three extensions will build on this benchmark: (1) integrating multimodal vision
 \section*{Data and Code Availability}
 To support independent research and future sustainability benchmarking, all evaluation scripts, benchmark generation code, prompt templates, and aggregated model outputs are publicly available at \url{https://github.com/Sredeemer/ESG-RAG-benchmark-ragas}.
 
-\section*{Competing Interests \& Funding}
-The authors declare no competing financial or personal interests. Compute infrastructure was supported by the Authors' Research Initiative.
+\section*{Acknowledgments}
+Figure~\ref{fig:architecture} was created with BioRender (\url{https://biorender.com}). Compute infrastructure was supported by the Authors' Research Initiative.
+
+\section*{Competing Interests}
+The authors declare no competing financial or personal interests.
 
 \bibliographystyle{plainnat}
 \bibliography{main}

@@ -89,3 +89,5 @@ paper/page_check_*.png
 # macOS system files
 .DS_Store
 */.DS_Store
+paper/page_snapshots/
+esg.png
